@@ -30,11 +30,18 @@ body {
     top: -81px;
 }
 
+.empty-header-place {
+    width: 100%;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+}
+
 .logo-with-text-container {
     height: 100%;
     display: flex;
     align-items: center;
-    max-width: 20%;
+    max-width: 40%;
 }
 
 .logo {
@@ -240,6 +247,8 @@ body {
     align-items: center;
     overflow: hidden;
     visibility: hidden;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .animate {
@@ -261,20 +270,57 @@ body {
 article:nth-child(1) {
     animation-delay: calc(var(--stagger-delay) * 1);
 }
+
 article:nth-child(2) {
     animation-delay: calc(var(--stagger-delay) * 2);
 }
+
 article:nth-child(3) {
     animation-delay: calc(var(--stagger-delay) * 3);
 }
+
 article:nth-child(4) {
     animation-delay: calc(var(--stagger-delay) * 4);
 }
+
 article:nth-child(5) {
     animation-delay: calc(var(--stagger-delay) * 5);
 }
+
 article:nth-child(6) {
     animation-delay: calc(var(--stagger-delay) * 6);
+}
+
+.text-on-article-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    max-height: max(8%, 45px);
+    transition: max-height .5s linear, background-color 0.5s ease-in-out;
+}
+
+.article:hover .text-on-article-container {
+    max-height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.text-on-article-container p:first-child {
+    font-size: max(2vw, 25px);
+    font-family: 'Castoro', serif;
+}
+
+.text-on-article-container p {
+    padding: 0.3rem 0.5rem;
+    font-size: max(1.2vw, 18px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 1;
+    transition: transform 0.5s ease-in-out;
+}
+
+.article:hover .text-on-article-container p {
+    transform: translateX(10px);
+    white-space: normal;
 }
 
 .article:hover {
@@ -306,4 +352,41 @@ article:nth-child(6) {
 
 .footer p {
     padding-right: 10px;
+}
+
+@media screen and (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        height: 120px;
+        justify-content: center;
+        align-items: center;
+    }
+    .header.hide {
+        top: -121px;
+    }
+    .empty-header-place {
+        height: 120px;
+    }
+    .logo {
+        margin: 0;
+        padding: 0;
+    }
+    .logo-with-text-container {
+        margin: 5px 0 0 0;
+        padding: 5px 0 0 0;
+        max-width: 100%;
+    }
+    .navbar {
+        max-width: 100%;
+    }
+    .welcome-section>div {
+        padding: 20px;
+        width: 90%;
+    }
+    .welcome-section p:first-child {
+        font-size: 4vw;
+    }
+    .welcome-section p {
+        font-size: 2.4vw;
+    }
 }

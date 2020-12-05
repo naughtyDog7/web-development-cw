@@ -122,6 +122,7 @@ for (let i = 0; i < links.length; i++) {
         }
     };
 
+    // add event for 15 times per second
     window.addEventListener('scroll', () => setTimeout(checkScroll, 1000/15));
 })();
 
