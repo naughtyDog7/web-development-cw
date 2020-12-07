@@ -183,11 +183,11 @@ body {
 
 .welcome-section p:first-child {
     font-family: 'Castoro', serif;
-    font-size: 2vw;
+    font-size: max(20px, 2vw);
 }
 
 .welcome-section p {
-    font-size: 1.2vw;
+    font-size: max(12px, 1.2vw);
     margin: 0.3rem 0;
     padding: 0.3rem 0;
 }
@@ -301,7 +301,7 @@ article:nth-child(6) {
 .text-on-article-container {
     width: 100%;
     background-color: rgba(0, 0, 0, .4);
-    max-height: max(8%, 45px);
+    max-height: max(8%, 35px);
     transition: max-height .5s linear, background-color 0.5s ease-in-out;
 }
 
@@ -311,13 +311,13 @@ article:nth-child(6) {
 }
 
 .text-on-article-container p:first-child {
-    font-size: max(2vw, 25px);
+    font-size: max(1.6vw, 20px);
     font-family: 'Castoro', serif;
 }
 
 .text-on-article-container p {
     padding: 0.3rem 0.5rem;
-    font-size: max(1.2vw, 18px);
+    font-size: max(1.2vw, 12px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
