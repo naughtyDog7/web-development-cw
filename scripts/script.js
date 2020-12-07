@@ -136,6 +136,11 @@ for (let i = 0; i < links.length; i++) {
     window.addEventListener('scroll', () => setTimeout(checkScroll, 1000 / 15));
 })();
 
+let yRatioFromTopInViewport = function (element) {
+    const rect = element.getBoundingClientRect();
+    return (window.innerHeight - rect.top) / rect.bottom;
+};
+
 // this function is needed to play articles animations at correct time 
 // when 200px or more of invisible first article are in viewport we add animate class and make all articles visible 
 // we make it one time animation by removing event listener at the end
@@ -145,12 +150,9 @@ for (let i = 0; i < links.length; i++) {
         return;
     document.addEventListener('scroll', animate);
 
-    function shouldAnimate(el) {
-        const rect = el.getBoundingClientRect();
-        return (
-            window.innerHeight - rect.top >= 200
-        );
-    }
+    let shouldAnimate = function (el) {
+        return yRatioFromTopInViewport(el) > 0.3;
+    };
 
     function animate() {
         if (shouldAnimate(elements[0])) {
@@ -174,10 +176,12 @@ for (let i = 0; i < links.length; i++) {
         }
     }
 
+    //this is simple utility function which returns string with comma separated numbers' thousands using regex
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    // this function converts instance of VehicleGridItem to html code
     buildHtmlForVehicle = function (vehicle) {
         let vehicleHtml = String.raw`<div class="vehicle-container">`
         vehicleHtml += String.raw`<p class="vehicle-name">` + vehicle.name + "</p>";
@@ -187,6 +191,7 @@ for (let i = 0; i < links.length; i++) {
         return vehicleHtml;
     };
 
+    // this is array of vehicles for vehicles page
     let vehicles = [
         new VehicleGridItem(" A-Class Sedan", 33650, "An entirely new class of Mercedes-Benz that sets a new standard for small sedans.", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/a/all-vehicles/2021-A220-SEDAN-AVP-DR.png`),
         new VehicleGridItem(" GLA SUV", 36230, "A true premium compact SUV with dramatic styling", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/gla/all-vehicles/2021-GLA250-AMG-LINE-SUV-AVP-DR.png`),
@@ -225,8 +230,29 @@ for (let i = 0; i < links.length; i++) {
         return;
     }
 
+    // this part of code adds each vehicle to vehicles container
     vehicles.forEach(vehicle => {
         let vehicleHtml = buildHtmlForVehicle(vehicle);
         vehiclesContainer.innerHTML += vehicleHtml;
     });
 })();
+
+let containersToAnimate = document.querySelectorAll(".about-design-section>div");
+
+function addFadeinGoupAnimation(element) {
+    document.addEventListener('scroll', animate);
+
+    let shouldAnimate = function (el) {
+        return yRatioFromTopInViewport(el) > 0.3;
+    };
+
+    function animate() {
+        if (shouldAnimate(element)) {
+            element.classList.add('animate-fadein-goup');
+            element.style.visibility = "visible";
+            document.removeEventListener('scroll', animate);
+        }
+    };
+};
+
+containersToAnimate.forEach(addFadeinGoupAnimation);
