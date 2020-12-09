@@ -26,7 +26,7 @@
     let alerted = getCookie("alerted");
     // if there is no alerted value cookie, or it is false, then we need to alert
     if (alerted === null || !alerted) {
-        alert("Please, note, this is not an original Mercedes-Benz Website, this is just a task for university CW");
+        alert("This website was created to fulfill Web Technology module’s requirements and does not represent an actual company or service");
         setCookie("alerted", "true", 0.1);
     }
 })();
@@ -39,7 +39,7 @@
     headers.forEach(header => {
         header.innerHTML = String.raw`<div class="logo-with-text-container">
         <img src="images/logo.svg" alt="Mercedes logo" class="logo">
-        <img src="images/mercedes-benz-text.svg" alt="Mercedes-Benz" class="mercedes-benz-text">
+        <img src="images/mercedes-benz-text.svg" alt="Mercedes-BFake" class="mercedes-benz-text">
     </div>
     <nav class="navbar">
         <ul class="nav-list">
@@ -61,7 +61,7 @@
     });
 
     let footers = document.querySelectorAll(".footer");
-    footers.forEach(footer => footer.innerHTML = String.raw`<p>Copyright. 2020. ID: 00010837</p>`);
+    footers.forEach(footer => footer.innerHTML = String.raw`<p><a href="https://github.com/naughtyDog7/web-development-cw">Source code</a></p><p>Copyright. 2020. ID: 00010837</p>`);
 })();
 
 
@@ -138,7 +138,10 @@ for (let i = 0; i < links.length; i++) {
 
 let yRatioFromTopInViewport = function (element) {
     const rect = element.getBoundingClientRect();
-    return (window.innerHeight - rect.top) / rect.bottom;
+    console.log("top" + rect.top);
+    console.log("bottom " + rect.bottom);
+    console.log("innerHeight " + window.innerHeight);
+    return (window.innerHeight - rect.top) / (rect.bottom - rect.top);
 };
 
 // this function is needed to play articles animations at correct time 
@@ -193,7 +196,7 @@ let yRatioFromTopInViewport = function (element) {
 
     // this is array of vehicles for vehicles page
     let vehicles = [
-        new VehicleGridItem(" A-Class Sedan", 33650, "An entirely new class of Mercedes-Benz that sets a new standard for small sedans.", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/a/all-vehicles/2021-A220-SEDAN-AVP-DR.png`),
+        new VehicleGridItem(" A-Class Sedan", 33650, "An entirely new class of Mercedes-BFake that sets a new standard for small sedans.", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/a/all-vehicles/2021-A220-SEDAN-AVP-DR.png`),
         new VehicleGridItem(" GLA SUV", 36230, "A true premium compact SUV with dramatic styling", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/gla/all-vehicles/2021-GLA250-AMG-LINE-SUV-AVP-DR.png`),
         new VehicleGridItem(" CLA Coupe", 37850, "An entirely new seductive style at an even more irresistible price.", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/cla/all-vehicles/2021-CLA250-COUPE-AVP-DR.png`),
         new VehicleGridItem(" GLB SUV", 38050, "An ideal blend of space, capability, technology and comfort.", String.raw`https://www.mbusa.com/content/dam/mb-nafta/us/myco/my21/glb/all-vehicles/2021-GLB250-SUV-AVP-DR.png`),
@@ -236,8 +239,8 @@ let yRatioFromTopInViewport = function (element) {
         vehiclesContainer.innerHTML += vehicleHtml;
     });
 })();
+let containersToAnimate = document.querySelectorAll(".text-image-section>div");
 
-let containersToAnimate = document.querySelectorAll(".about-design-section>div");
 
 function addFadeinGoupAnimation(element) {
     document.addEventListener('scroll', animate);
@@ -256,3 +259,22 @@ function addFadeinGoupAnimation(element) {
 };
 
 containersToAnimate.forEach(addFadeinGoupAnimation);
+
+let hrAfters = document.querySelectorAll(".hr-after");
+hrAfters.forEach(hrAfter => {
+    let hr = document.createElement('hr');
+    hr.classList.add("after-section-hr")
+    hrAfter.insertAdjacentElement('afterend', hr);
+    document.addEventListener('scroll', animate);
+    
+    let shouldAnimate = function (el) {
+        return yRatioFromTopInViewport(el) > 0.1;
+    };
+
+    function animate() {
+        if (shouldAnimate(hr)) {
+            hr.style.width = "100%";
+            document.removeEventListener('scroll', animate);
+        }
+    };
+});

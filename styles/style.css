@@ -353,7 +353,7 @@ article:nth-child(6) {
     height: 30px;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     background-color: black;
     font-family: Arial, Helvetica, sans-serif;
@@ -362,7 +362,23 @@ article:nth-child(6) {
 }
 
 .footer p {
-    padding-right: 10px;
+    margin: 0 5px;
+}
+
+.footer a {
+    text-decoration: none;
+    color:  rgba(76, 125, 223, 0.6);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    -webkit-transition: color 0.2s;
+    -moz-transition: color 0.2s;
+    -ms-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.footer a:hover {
+    color: rgb(61, 117, 228);
 }
 
 @media screen and (max-width: 640px) {
@@ -478,13 +494,13 @@ article:nth-child(6) {
     height: 50px;
 }
 
-.about-design-section {
+.text-image-section {
     width: 100%;
     height: auto;
     background-color: white;
 }
 
-.about-design-section {
+.text-image-section {
     width: 100%;
     height: auto;
     display: flex;
@@ -494,7 +510,7 @@ article:nth-child(6) {
     overflow: hidden;
 }
 
-.about-design-section>div {
+.text-image-section>div {
     position: relative;
     width: 40%;
     height: auto;
@@ -518,18 +534,18 @@ article:nth-child(6) {
     }
 }
 
-.about-design-section>div>img {
+.text-image-section>div>img {
     width: 100%;
     height: auto;
 }
 
-.about-design-section>div>p:first-child {
+.text-image-section>div>p:first-child {
     color: black;
     font-size: max(20px, 2vw);
     margin-top: inherit;
 }
 
-.about-design-section>div>p {
+.text-image-section>div>p {
     opacity: 0.8;
     margin: 20px 5px 5px 5px;
     font-family: sans-serif;
@@ -537,11 +553,20 @@ article:nth-child(6) {
 }
 
 @media screen and (max-width: 1000px) {
-    .about-design-section {
+    .text-image-section {
         flex-direction: column;
     }
-
-    .about-design-section>div {
+    .text-image-section>div {
         width: 60%;
     }
+}
+
+.after-section-hr {
+    color: black;
+    transition: width 1s ease-out;
+    width: 0;
+}
+
+.footer {
+
 }
